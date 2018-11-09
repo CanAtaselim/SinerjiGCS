@@ -22,6 +22,7 @@ message(Qt version $$[QT_VERSION])
 include(QGCCommon.pri)
 
 TARGET   = SinerjiGCS
+
 TEMPLATE = app
 QGCROOT  = $$PWD
 
@@ -240,6 +241,8 @@ QT += \
     xml \
     texttospeech
 
+QT += multimedia multimediawidgets
+
 # Multimedia only used if QVC is enabled
 !contains (DEFINES, QGC_DISABLE_UVC) {
     QT += \
@@ -407,7 +410,8 @@ HEADERS += \
     src/api/QGCSettings.h \
     src/api/QmlComponentInfo.h \
     src/comm/MavlinkMessagesTimer.h \
-    src/ui/logindialog.h
+    src/ui/logindialog.h \
+    src/VideoPlayer/videoplayer.h
 
 SOURCES += \
     src/api/QGCCorePlugin.cc \
@@ -415,7 +419,8 @@ SOURCES += \
     src/api/QGCSettings.cc \
     src/api/QmlComponentInfo.cc \
     src/comm/MavlinkMessagesTimer.cc \
-    src/ui/logindialog.cpp
+    src/ui/logindialog.cpp \
+    src/VideoPlayer/videoplayer.cpp
 
 #
 # Unit Test specific configuration goes here (requires full debug build with all plugins)
@@ -626,7 +631,7 @@ HEADERS += \
 
 AndroidBuild {
 HEADERS += \
-	src/Joystick/JoystickAndroid.h \
+        src/Joystick/JoystickAndroid.h \
 }
 
 DebugBuild {
@@ -712,7 +717,7 @@ iOSBuild {
 
 AndroidBuild {
     SOURCES += src/MobileScreenMgr.cc \
-	src/Joystick/JoystickAndroid.cc \
+        src/Joystick/JoystickAndroid.cc \
 }
 
 SOURCES += \
